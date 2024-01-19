@@ -9,7 +9,7 @@ class Test {
         $this -> filePath = $path;
     }
 
-    public function test1() {
+    public function getAllQuestions() {
         $questionList = new QuestionsList([]);
         try {
             $questionList->parse('./questions.md');
@@ -19,11 +19,11 @@ class Test {
         }
     }
 
-    public function test2() {
+    public function getQuestion($n) {
         $questionList = new QuestionsList([]);
         try {
             $questionList->parse('./questions.md');
-            print_r($questionList -> getQuestion(4));
+            print_r($questionList -> getQuestion($n));
         } catch (Exception $e) {
             echo "Meassage: ".$e->getMessage();
         }
@@ -31,6 +31,6 @@ class Test {
 }
 
 $test = new Test('./questions.md');
-$test->test1();
-$test->test2();
+$test->getAllQuestions();
+$test->getQuestion(4);
 ?>
