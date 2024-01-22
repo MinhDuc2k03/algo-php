@@ -1,6 +1,5 @@
 <?php
-require_once "./Question.php";
-require_once "./QuestionsList.php";
+include "./QuestionsList.php";
 
 class Test {
     private $filePath;
@@ -11,22 +10,16 @@ class Test {
 
     public function getAllQuestions() {
         $questionList = new QuestionsList([]);
-        try {
-            $questionList->parse('./questions.md');
-            print_r($questionList -> all());
-        } catch (Exception $e) {
-            echo "Meassage: ".$e->getMessage();
-        }
+
+        $questionList -> parse('./questions.md');
+        print_r($questionList -> getAllQuestions());
     }
 
     public function getQuestion($n) {
         $questionList = new QuestionsList([]);
-        try {
-            $questionList->parse('./questions.md');
-            print_r($questionList -> getQuestion($n));
-        } catch (Exception $e) {
-            echo "Meassage: ".$e->getMessage();
-        }
+        
+        $questionList->parse('./questions.md');
+        print_r($questionList -> getQuestion($n));
     }
 }
 

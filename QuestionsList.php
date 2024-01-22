@@ -1,13 +1,13 @@
 <?php
-require_once "./Collection.php";
-require_once "./Question.php";
+include "./Question.php";
 
-class QuestionsList extends Collection {
+class QuestionsList {
     private $questions = [];
 
     public function __construct($questions) {
         $this -> questions = $questions;
     }
+
 
     public function parse($path) {
         if (file_exists($path)) {
@@ -15,10 +15,9 @@ class QuestionsList extends Collection {
 
             $questionList = explode("###### ", $fileContent);
             array_shift($questionList);
-            print_r($questionList);
 
-            foreach ($questionList as $questionWhole) {
-                list($question, $answer) = explode("#### ", $questionWhole);
+            foreach ($questionList as $quest) {
+                list($question, $answer) = explode("#### ", $quest);
                 list($titles, $content) = explode('?', $question);
                 list($number, $title) = explode('.', $titles);
                 
@@ -26,11 +25,11 @@ class QuestionsList extends Collection {
             }
         }
         else {
-            throw new \Exception("File không tìm thấy, kiểm tra lại đường dẫn ". $path);
+            throw new \Exception("File không tìm thấy, kiểm tra lại đường dẫn " . $path);
         }
     }
 
-    public function all() {
+    public function getAllQuestions() {
         return $this -> questions;
     }
 
